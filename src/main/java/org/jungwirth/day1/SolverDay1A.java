@@ -1,14 +1,12 @@
-package org.jungwirth.day1.partA;
-
-import org.jungwirth.Solver;
-import org.jungwirth.day1.FileInput;
+//(c) Jan Jungwirth - 03.12.2024 - check out: https://adventofcode.com/2024
+package org.jungwirth.day1;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class SolverDay1A implements Solver {
-    List<Integer> elvesListOne = new LinkedList<>();
-    List<Integer> elvesListTwo = new LinkedList<>();;
+public final class SolverDay1A extends SolverDay1Common {
+    private final List<Integer> elvesListOne = new LinkedList<>();
+    private final List<Integer> elvesListTwo = new LinkedList<>();
 
     @Override
     public void solve() {
@@ -22,15 +20,10 @@ public class SolverDay1A implements Solver {
         return calculateDifference();
     }
 
-
-    private List<String> loadLists() {
-        final FileInput fileInput = new FileInput();
-        return fileInput.loadListFromFile("input.txt");
-    }
-
-    private void populateElvesLists(final List<String> loadedList) {
+    @Override
+    protected void populateElvesLists(final List<String> loadedList) {
         loadedList.forEach(line -> {
-           final String[] segment = line.split(" {3}");
+           final String[] segment = line.split(REGEX_SPLIT);
            elvesListOne.add(Integer.parseInt(segment[0]));
            elvesListTwo.add(Integer.parseInt(segment[1]));
         });
@@ -50,15 +43,15 @@ public class SolverDay1A implements Solver {
         return result;
     }
 
-    private static Integer getUnsignedInteger(final Integer evaluation) {
-        Integer result = evaluation;
-        if(isNegativeNumber(result))
-            result *=-1;
-        return result;
+    private static Integer getUnsignedInteger(final Integer signedInteger) {
+        Integer unsignedInteger = signedInteger;
+        if(isNegativeNumber(signedInteger))
+            unsignedInteger *=-1;
+        return unsignedInteger;
     }
 
-    private static boolean isNegativeNumber(final Integer evaluation) {
-        return evaluation < 0;
+    private static boolean isNegativeNumber(final Integer signedInteger) {
+        return signedInteger < 0;
     }
 
 }
