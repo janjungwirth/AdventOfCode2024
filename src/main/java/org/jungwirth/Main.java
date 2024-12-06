@@ -2,14 +2,11 @@
 package org.jungwirth;
 
 
-import org.jungwirth.day4.SolverDay4;
+import org.jungwirth.day4.SolverDay4B;
 
 public class Main {
     public static void main(final String[] args) {
-        final Solver solver = new SolverDay4();
+        final Solver solver = new SolverDay4B();
         solver.solve();
     }
-
-
-
 }

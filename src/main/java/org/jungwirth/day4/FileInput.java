@@ -17,6 +17,22 @@ public class FileInput {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return null;
+        return List.of();
+    }
+
+    public char[][] loadArrayFromFile(final String fileName){
+
+        final Path path = Paths.get("src","main","java","org","jungwirth","day4",fileName);
+        try {
+            final List<String> lines = Files.readAllLines(path);
+            final char[][] characters = new char[lines.size()][lines.getFirst().length()];
+            for (int row = 0; row < lines.size(); row++) {
+                characters[row] = lines.get(row).toCharArray();
+            }
+            return characters;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
