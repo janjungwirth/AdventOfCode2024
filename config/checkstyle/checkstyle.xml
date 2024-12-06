@@ -5,6 +5,10 @@
         "https://checkstyle.org/dtds/configuration_1_3.dtd">
 
 <module name="Checker">
+    <!-- SuppressionFilter to ignore AvoidStaticImport in test classes -->
+    <module name="SuppressionFilter">
+        <property name="file" value="${config_loc}/suppressions.xml"/>
+    </module>
     <module name="TreeWalker">
         <module name="FallThrough"/>
         <module name="AbbreviationAsWordInName"/>
